@@ -34,22 +34,20 @@ def brownian(scale, steps, dist):
 
     # Draw the random walk of a particle
     for i in range(0, steps):
+        print(i)
         # Get a color for the particle
         t.pencolor(rgb[0][i])
         t.color(rgb[0][i])
         if dist == 'normal':
-            # Move forward with a gaussian distribution
             (x[i], y[i]) = t.pos()  # get position in each step
-            t.forward(random.gauss(0, 1)*scale)
-            # Turn with a gaussian distribution
-            t.right(random.gauss(0, 1)*360)
+            t.forward(random.gauss(0, 1)*scale) # Move forward with a gaussian distribution
+            t.right(random.gauss(0, 1)*360) # Turn with a gaussian distribution
             # If particle is out of screen, turn back
             if abs(x[i]) > width or abs(y[i]) > height:
                 t.right(180)
         elif dist == 'random':
-            # Move forward with a random distribution
             (x[i], y[i]) = t.pos()  # get position in each step
-            t.forward(random.random()*scale)
+            t.forward(random.random()*scale) # Move forward with a random distribution
             t.right(random.random()*360)  # Turn with a random distribution
             # If particle is out of screen, turn back
             if abs(x[i]) > width or abs(y[i]) > height:
@@ -59,17 +57,18 @@ def brownian(scale, steps, dist):
 
 
 # Call function
-steps = 50
-scale = 15
+steps = 10000
+scale = 10
 dist_type = 'normal'
-# Set random seed for reproducibility random[0,3,4,6,8] normal[3,5,6,9,42
+# Set random seed for reproducibility
 random.seed(9)
 
 #Get positions of brownian motion
 (X, Y) = brownian(scale, steps, dist_type)
 
-# Calculate the total distance of particle
+#Define the variable r (total distance of particle)
 r = np.zeros(steps)
+#Define the variable time (time of particle)
 time = np.arange(steps)
 
 #Open file to write the results
@@ -80,21 +79,3 @@ with open('results.csv', 'w', newline='') as file:
         r[i] = (X[i]**2 + Y[i]**2)**0.5 #Calculate the total distance of particle
         writer.writerow([time[i],X[i], Y[i], r[i]])
 
-#Plot the results
-fig = plt.figure(0)
-plt.plot(time, r, 'bo', linewidth=2)
-plt.xlabel('Time')
-plt.ylabel('Distance')
-plt.show()
-
-fig1 = plt.figure(1)
-plt.plot(time, X, 'bo', linewidth=2)
-plt.xlabel('Time')
-plt.ylabel('Distance in X')
-plt.show()
-
-fig2 = plt.figure(2)
-plt.plot(time, Y, 'bo', linewidth=2)
-plt.xlabel('Time')
-plt.ylabel('Distance in Y')
-plt.show()
