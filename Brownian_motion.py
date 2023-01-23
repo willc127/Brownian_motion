@@ -53,15 +53,15 @@ def brownian(scale, steps, dist):
             if abs(x[i]) > width or abs(y[i]) > height:
                 t.right(180)
     return [x, y]
-    t.done()
+
 
 
 # Call function
-steps = 10000
-scale = 10
+steps = 6000
+scale = 5
 dist_type = 'normal'
 # Set random seed for reproducibility
-random.seed(9)
+random.seed(3)
 
 #Get positions of brownian motion
 (X, Y) = brownian(scale, steps, dist_type)
@@ -79,3 +79,4 @@ with open('results.csv', 'w', newline='') as file:
         r[i] = (X[i]**2 + Y[i]**2)**0.5 #Calculate the total distance of particle
         writer.writerow([time[i],X[i], Y[i], r[i]])
 
+t.done()
