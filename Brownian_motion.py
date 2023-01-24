@@ -40,20 +40,22 @@ def brownian(scale, steps, dist):
         t.color(rgb[0][i])
         if dist == 'normal':
             (x[i], y[i]) = t.pos()  # get position in each step
-            t.forward(random.gauss(0, 1)*scale) # Move forward with a gaussian distribution
-            t.right(random.gauss(0, 1)*360) # Turn with a gaussian distribution
+            # Move forward with a gaussian distribution
+            t.forward(random.gauss(0, 1)*scale)
+            # Turn with a gaussian distribution
+            t.right(random.gauss(0, 1)*360)
             # If particle is out of screen, turn back
             if abs(x[i]) > width or abs(y[i]) > height:
                 t.right(180)
         elif dist == 'random':
             (x[i], y[i]) = t.pos()  # get position in each step
-            t.forward(random.random()*scale) # Move forward with a random distribution
+            # Move forward with a random distribution
+            t.forward(random.random()*scale)
             t.right(random.random()*360)  # Turn with a random distribution
             # If particle is out of screen, turn back
             if abs(x[i]) > width or abs(y[i]) > height:
                 t.right(180)
     return [x, y]
-
 
 
 # Call function
@@ -63,20 +65,21 @@ dist_type = 'normal'
 # Set random seed for reproducibility
 random.seed(3)
 
-#Get positions of brownian motion
+# Get positions of brownian motion
 (X, Y) = brownian(scale, steps, dist_type)
 
-#Define the variable r (total distance of particle)
+# Define the variable r (total distance of particle)
 r = np.zeros(steps)
-#Define the variable time (time of particle)
+# Define the variable time (time of particle)
 time = np.arange(steps)
 
-#Open file to write the results
+# Open file to write the results
 with open('results.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['Time', 'X', 'Y', 'r'])
     for i in range(steps):
-        r[i] = (X[i]**2 + Y[i]**2)**0.5 #Calculate the total distance of particle
-        writer.writerow([time[i],X[i], Y[i], r[i]])
+        # Calculate the total distance of particle
+        r[i] = (X[i]**2 + Y[i]**2)**0.5
+        writer.writerow([time[i], X[i], Y[i], r[i]])
 
 t.done()
