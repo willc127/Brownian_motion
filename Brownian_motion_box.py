@@ -5,12 +5,13 @@ import numpy as np
 import random
 import csv
 
-def brownian(scale, total_steps, dist_type, boxsize):
+
+def brownian_box(scale, total_steps, dist_type, boxsize):
     # Specify screen properties
     scr = t.Screen()
     scr.bgcolor('black')
 
-    #Draw box
+    # Draw box
     box = t.Turtle()
     box.penup()
     box.setposition(-boxsize, -boxsize)
@@ -23,7 +24,7 @@ def brownian(scale, total_steps, dist_type, boxsize):
         box.left(90)
     box.hideturtle()
 
-    #Create a particle
+    # Create a particle
     particle = t.Turtle()
     particle.shape('circle')
     particle.shapesize(stretch_wid=0.75, stretch_len=0.75)
@@ -36,10 +37,10 @@ def brownian(scale, total_steps, dist_type, boxsize):
     row = np.linspace(0.0, 1.0, total_steps)
     rgb = mpl.colormaps['jet'](row)[np.newaxis, :, :3]  # Convert color to rgb
 
-    #Define positions of the particle
+    # Define positions of the particle
     x = np.zeros(total_steps)
     y = np.zeros(total_steps)
-    
+
     # Draw the random walk of a particle
     for i in range(0, total_steps):
         print(i)
@@ -47,7 +48,7 @@ def brownian(scale, total_steps, dist_type, boxsize):
         # Get a color for the particle
         particle.pencolor(rgb[0][i])
         particle.color(rgb[0][i])
-        
+
         if x[i] >= boxsize:
             particle.setposition(boxsize, y[i])
             particle.right(180)
@@ -60,7 +61,7 @@ def brownian(scale, total_steps, dist_type, boxsize):
         elif y[i] <= -boxsize:
             particle.setposition(x[i], -boxsize)
             particle.right(180)
-            
+
         if dist_type == 'normal':
             # Move forward with a gaussian distribution
             particle.forward(random.gauss(0, 1)*scale)
@@ -71,8 +72,9 @@ def brownian(scale, total_steps, dist_type, boxsize):
             particle.forward(random.random()*scale)
             # Turn with a random distribution
             particle.right(random.random()*360)
-            
+
     return [x, y]
+
 
 # Calling function
 total_steps = 6000
@@ -81,7 +83,7 @@ dist_type = 'normal'
 boxsize = 100
 # Set random seed for reproducibility
 random.seed(3)
-(X,Y) = brownian(scale, total_steps, dist_type, boxsize)
+(X, Y) = brownian_box(scale, total_steps, dist_type, boxsize)
 
 # Define the variable r (total distance of particle)
 r = np.zeros(total_steps)
