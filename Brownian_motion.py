@@ -29,7 +29,7 @@ def brownian(scale, total_steps, dist_type):
     row = np.linspace(0.0, 1.0, total_steps)
     rgb = mpl.colormaps['jet'](row)[np.newaxis, :, :3]  # Convert color to rgb
 
-    #Define positions of the particle
+    # Define positions of the particle
     x = np.zeros(total_steps)
     y = np.zeros(total_steps)
 
@@ -52,6 +52,16 @@ def brownian(scale, total_steps, dist_type):
             particle.right(random.random()*360)
 
     return [x, y]
+
+# The brownian function defined here generates a random walk of a particle on the screen using the turtle library.
+# The function takes three inputs: scale, total_steps, and dist_type.
+# scale determines the distance the particle moves in each step, total_steps determines how many steps the particle
+# takes before the function stops, and dist_type specifies the type of distribution for the distance and turning angles.
+# The function begins by setting up the turtle screen and creating a turtle object that represents the particle.
+# Then, it uses a colormap to assign a color to the particle for each step.
+# The function then uses a for loop to iterate over the total number of steps and move the particle according to the
+# specified distribution type. At each step, it records the position of the particle and writes it to the 'results.csv' file.
+# Finally, the function returns the position of the particle at each step.
 
 
 # Calling function
