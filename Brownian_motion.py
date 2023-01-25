@@ -88,4 +88,11 @@ with open('results.csv', 'w', newline='') as file:
         r[i] = (X[i]**2 + Y[i]**2)**0.5
         writer.writerow([time[i], X[i], Y[i], r[i]])
 
+# This code snippet uses the "csv" library to open a file named 'results.csv' in write mode.
+# A csv writer object is created and the first row of the file, containing the headers 'Time', 'X', 'Y', and 'r', is written.
+# The code then enters a for loop that iterates over the range of "total_steps".
+# Within the loop, the distance of a particle from the origin is calculated using the Pythagorean theorem and stored in the "r" array.
+# The current values of time, X, Y, and r are then written as a new row in the 'results.csv' file.
+# Once the loop completes, the file is closed and the data is saved to the specified file.
+
 t.done()
