@@ -32,12 +32,12 @@ def brownian(scale, total_steps, dist_type):
     # Define positions of the particle
     x = np.zeros(total_steps)
     y = np.zeros(total_steps)
-    particle.goto(-700,0)
+    particle.goto(-750,0)
     # Draw the random walk of a particle
     for i in range(0, total_steps):
         print(i)
         (x[i], y[i]) = particle.pos()  # get position in each step
-        particle.goto(x[i]+1, y[i])  # move to new position (this is the force action in the particle)
+        particle.goto(x[i]+0.4, y[i])  # move to new position (this is the force action in the particle)
         # Get a color for the particle
         particle.pencolor(rgb[0][i])
         particle.color(rgb[0][i])
@@ -66,7 +66,7 @@ def brownian(scale, total_steps, dist_type):
 
 
 # Calling function
-total_steps = 2000
+total_steps = 6000
 scale = 5
 dist_type = 'normal'
 # Set random seed for reproducibility
