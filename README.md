@@ -21,6 +21,13 @@ The function sets up the turtle environment, assigns colors to the particle usin
 
 Each simulation demonstrates different scenarios of Brownian motion, including an open space, motion within a bounded box, and motion with an additional force. The results are saved in CSV files ('results.csv', 'results_box.csv', 'results_force.csv').
 
+
+# Analysis of Brownian Motion Data
+The data analysis includes plotting the total distance from the origin over time, calculating the mean square displacement (MSD), and determining the diffusivity constant through linear regression.
+
+![comparison](comparison.png)
+
+
 # How to Contribute
 
 1.  Fork the repository
